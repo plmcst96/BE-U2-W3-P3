@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,11 +27,12 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.formLogin(AbstractHttpConfigurer::disable);
-        httpSecurity.sessionManagement(sessiom -> sessiom.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpSecurity.csrf(AbstractHttpConfigurer::disable);
         httpSecurity.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         httpSecurity.addFilterBefore(exceptionsHandlerFilter, JWTAuthFilter.class);
         httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll());
+        httpSecurity.authorizeHttpRequests(request -> request.requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll().anyRequest().authenticated());
         return httpSecurity.build();
     }
 
