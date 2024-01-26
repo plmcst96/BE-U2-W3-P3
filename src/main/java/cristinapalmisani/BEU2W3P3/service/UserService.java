@@ -55,11 +55,11 @@ public class UserService {
         return userDAO.save(user);
     }
 
-    public User setUser(UUID id) {
+/*    public User setUser(UUID id) {
         User user = userDAO.findById(id).orElseThrow(() -> new NotFoundException(id));
         user.setRole(Role.USER);
         return userDAO.save(user);
-    }
+    }*/
 
     public Event bookEvent(User authUser, UUID eventId) {
         Event event = eventDAO.findById(eventId).orElseThrow(() -> new NotFoundException(eventId));

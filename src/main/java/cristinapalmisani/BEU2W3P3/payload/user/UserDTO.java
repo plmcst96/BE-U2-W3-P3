@@ -16,5 +16,10 @@ public record UserDTO(@NotNull(message = "email cannot be null")
                       @NotNull(message = "surname cannot be null")
                       @NotEmpty(message = "surname cannot be empty")
                       @Size(min = 3, max = 30, message = "surname must be between 3 e 30 chars")
-                      String surname) {
+                      String surname,
+
+                      @NotNull(message = "password cannot be null")
+                      @NotEmpty(message = "password cannot be empty")
+                      @Size(min = 3, max = 30, message = "password must be between 3 e 30 chars")
+                      String password) {
 }
