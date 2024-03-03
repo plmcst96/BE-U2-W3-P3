@@ -3,4 +3,4 @@
 
 Swagger documentation: 
 
-click here -> https://app.swaggerhub.com/apis-docs/CRISTINAPALMISANI_1/open-api_definition/v0
+click here -> https://app.swaggerhub.com/apis-docs/CRISTINAPALMISANI_1/event/v0
